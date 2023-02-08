@@ -4,7 +4,7 @@ namespace Limonte\Tests;
 use Limonte\AdblockRule;
 use Limonte\InvalidRuleException;
 
-class AdblockRuleTest extends \PHPUnit_Framework_TestCase
+class AdblockRuleTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetRegex()
     {
@@ -17,38 +17,38 @@ class AdblockRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidRegex()
     {
+        $this->expectException(InvalidRuleException::class);
         $invalidRule = new AdblockRule('//');
-        $invalidRule->getRegex();
     }
 
     public function testEscapeSpecialCharacters()
     {
         $rule = new AdblockRule('.$+?{}()[]/\\');
-        $this->assertEquals('\.\$\+\?\{\}\(\)\[\]\/\\\\', $rule->getRegex());
+        $this->assertSame('\.\$\+\?\{\}\(\)\[\]\/\\\\', $rule->getRegex());
     }
 
     public function testCaret()
     {
         $rule = new AdblockRule('domain^');
-        $this->assertEquals('domain([^\w\d_\-.%]|$)', $rule->getRegex());
+        $this->assertSame('domain([^\w\d_\-.%]|$)', $rule->getRegex());
     }
 
     public function testAsterisk()
     {
         $rule = new AdblockRule('domain*');
-        $this->assertEquals('domain.*', $rule->getRegex());
+        $this->assertSame('domain.*', $rule->getRegex());
     }
 
     public function testVerticalBars()
     {
         $rule = new AdblockRule('||domain');
-        $this->assertEquals('^([^:\/?#]+:)?(\/\/([^\/?#]*\.)?)?domain', $rule->getRegex());
+        $this->assertSame('^([^:\/?#]+:)?(\/\/([^\/?#]*\.)?)?domain', $rule->getRegex());
 
         $rule = new AdblockRule('|domain');
-        $this->assertEquals('^domain', $rule->getRegex());
+        $this->assertSame('^domain', $rule->getRegex());
 
         $rule = new AdblockRule('domain|bl||ah');
-        $this->assertEquals('domain\|bl\|\|ah', $rule->getRegex());
+        $this->assertSame('domain\|bl\|\|ah', $rule->getRegex());
     }
 
     public function testMatchUrl()
