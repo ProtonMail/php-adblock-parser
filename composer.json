@@ -1,37 +1,59 @@
 {
-  "name": "protonlabs/php-adblock-parser",
-  "description": "PHP parser for Adblock Plus filters. A snapshot of abandoned limonte/php-adblock-parser",
-  "keywords": [
-    "adblock",
-    "parser"
-  ],
-  "version": "1.0.1",
-  "homepage": "https://github.com/limonte/php-adblock-parser",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Limon Monte",
-      "email": "limon.monte@gmail.com"
+    "name": "protonlabs/php-adblock-parser",
+    "description": "PHP parser for Adblock Plus filters. A fork of abandoned limonte/php-adblock-parser",
+    "keywords": [
+        "adblock",
+        "parser"
+    ],
+    "version": "1.0.2",
+    "homepage": "https://github.com/limonte/php-adblock-parser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Limon Monte",
+            "email": "limon.monte@gmail.com"
+        },
+        {
+            "name": "Cyril van Schreven",
+            "email": "cyril.schreven@protonmail.com"
+        }
+    ],
+    "type": "project",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "jeremykendall/php-domain-parser": "^6.2",
+        "psr/cache": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "test": "phpunit"
     }
-  ],
-  "require": {
-    "ext-mbstring": "*",
-    "jeremykendall/php-domain-parser" : "^6.2"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "Limonte\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Limonte\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "test": "phpunit"
-  }
 }

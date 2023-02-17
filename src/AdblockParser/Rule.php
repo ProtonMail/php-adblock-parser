@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Limonte;
+namespace App\AdblockParser;
 
-use Pdp\Rules;
-
-class AdblockRule
+class Rule
 {
     private string $rule;
 
@@ -32,7 +30,7 @@ class AdblockRule
         if (preg_match(
             pattern: '/\|\|([^\^\/\?\#]*)/',
             subject: $this->rule,
-            matches: $matches
+            matches: $matches,
         )) {
             $domain = $matches[1];
             $this->registrableDomain = DomainParser::parseRegistrableDomain($domain);
