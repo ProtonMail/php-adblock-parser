@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace ProtonLabs\AdblockParser\Tests;
 
 use Symfony\Contracts\Cache\CacheInterface;
 

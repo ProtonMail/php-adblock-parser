@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace ProtonLabs\AdblockParser\Tests;
 
-use App\AdblockParser\Rule;
-use App\AdblockParser\InvalidRuleException;
+use ProtonLabs\AdblockParser\Rule;
+use ProtonLabs\AdblockParser\InvalidRuleException;
 
 class RuleTest extends \PHPUnit\Framework\TestCase
 {

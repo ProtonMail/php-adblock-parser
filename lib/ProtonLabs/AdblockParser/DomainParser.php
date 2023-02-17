@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdblockParser;
+namespace ProtonLabs\AdblockParser;
 
 use Pdp\Rules;
 
@@ -16,7 +16,7 @@ class DomainParser
             $publicSuffixRules = unserialize($serializedRules);
             assert($publicSuffixRules instanceof Rules);
         } else {
-            $publicSuffixRules = Rules::fromPath(realpath(__DIR__ . '/../../resources/public_suffix_list.dat'));
+            $publicSuffixRules = Rules::fromPath(realpath(__DIR__ . '/../../../resources/public_suffix_list.dat'));
             $serializedRules = serialize($publicSuffixRules);
             file_put_contents('publicSuffixRules', $serializedRules);
         }

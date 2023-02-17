@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdblockParser;
+namespace ProtonLabs\AdblockParser;
 
 class InvalidRuleException extends \Exception
 {

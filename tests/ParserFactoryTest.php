@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace ProtonLabs\AdblockParser\Tests;
 
-use App\AdblockParser\Parser;
-use App\AdblockParser\ParserFactory;
+use ProtonLabs\AdblockParser\Parser;
+use ProtonLabs\AdblockParser\ParserFactory;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;

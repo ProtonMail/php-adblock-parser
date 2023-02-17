@@ -1,7 +1,7 @@
 <?php
-namespace App\AdblockParser\Str;
+namespace ProtonLabs\AdblockParser\Str;
 
-use App\AdblockParser\Str;
+use ProtonLabs\AdblockParser\Str;
 
 class StrTest extends \PHPUnit\Framework\TestCase
 {

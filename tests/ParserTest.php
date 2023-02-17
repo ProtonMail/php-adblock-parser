@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace ProtonLabs\AdblockParser\Tests;
 
-use App\AdblockParser\Parser;
-use App\AdblockParser\NotAnUrlException;
+use ProtonLabs\AdblockParser\Parser;
+use ProtonLabs\AdblockParser\NotAnUrlException;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
