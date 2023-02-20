@@ -2,8 +2,8 @@
 
 namespace ProtonLabs\AdblockParser\Tests;
 
-use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\InvalidRuleException;
+use ProtonLabs\AdblockParser\Rule;
 
 class RuleTest extends \PHPUnit\Framework\TestCase
 {

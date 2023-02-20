@@ -5,7 +5,7 @@
         "adblock",
         "parser"
     ],
-    "version": "1.0.3",
+    "version": "1.0.4",
     "homepage": "https://github.com/limonte/php-adblock-parser",
     "license": "MIT",
     "authors": [
@@ -39,7 +39,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ProtonLabs\\": "lib/ProtonLabs"
+            "ProtonLabs\\AdblockParser\\": "src"
         }
     },
     "autoload-dev": {
