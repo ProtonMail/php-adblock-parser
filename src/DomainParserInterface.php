@@ -6,5 +6,5 @@ namespace ProtonLabs\AdblockParser;
 
 interface DomainParserInterface
 {
-    public static function parseRegistrableDomain(string $host): string;
+    public function parseRegistrableDomain(string $host): string;
 }

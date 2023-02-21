@@ -5,7 +5,7 @@
         "adblock",
         "parser"
     ],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "homepage": "https://github.com/limonte/php-adblock-parser",
     "license": "MIT",
     "authors": [
@@ -25,8 +25,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "jeremykendall/php-domain-parser": "^6.2",
-        "psr/cache": "^3.0"
+        "jeremykendall/php-domain-parser": "^6.2"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

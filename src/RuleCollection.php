@@ -6,24 +6,51 @@ namespace ProtonLabs\AdblockParser;
 
 class RuleCollection
 {
-    /** @var list<Rule> $exceptions */
-    private array $exceptions = [];
+    /**
+     * @param array<Rule> $exceptions // items that match this should be whitelisted from all other blocking rules
+     * @param array<Rule> $blockers  // items that match this should be blocked
+     */
+    public function __construct(
+        private array $exceptions = [],
+        private array $blockers = [],
+    ) {
+    }
 
-    /** @var list<Rule> $blockers */
-    private array $blockers = [];
-
-    public function addRule(Rule $rule): bool
+    public function toArray(): array
     {
-        if ($rule->isHtml() || $rule->isComment()) {
-            return false;
-        }
+        return [
+            'exceptions' => array_map(
+                static fn (Rule $exception) => $exception->toArray(),
+                $this->exceptions,
+            ),
+            'blockers' => array_map(
+                static fn (Rule $blocker) => $blocker->toArray(),
+                $this->blockers,
+            ),
+        ];
+    }
+
+    public static function fromArray(array $array): self
+    {
+        return new self(
+            exceptions: array_map(
+                static fn (array $ruleArray) => Rule::fromArray($ruleArray),
+                $array['exceptions'],
+            ),
+            blockers: array_map(
+                static fn (array $ruleArray) => Rule::fromArray($ruleArray),
+                $array['blockers'],
+            ),
+        );
+    }
+
+    public function addRule(Rule $rule): void
+    {
         if ($rule->isException()) {
             $this->exceptions[] = $rule;
         } else {
             $this->blockers[] = $rule;
         }
-
-        return true;
     }
 
     /**

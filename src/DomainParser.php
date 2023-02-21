@@ -4,40 +4,37 @@ declare(strict_types=1);
 
 namespace ProtonLabs\AdblockParser;
 
+use Pdp\PublicSuffixList;
 use Pdp\Rules;
+use Pdp\Storage\PublicSuffixListStorage;
 
 class DomainParser implements DomainParserInterface
 {
-    private static ?Rules $publicSuffixRules = null;
+    private const PUBLIC_SUFFIX_LIST_URI = 'https://publicsuffix.org/list/public_suffix_list.dat';
 
-    public static function parseRegistrableDomain(string $host): string
+    private static ?PublicSuffixList $publicSuffixRules = null;
+
+    public function __construct(
+        private readonly PublicSuffixListStorage $publicSuffixListStorage,
+    ) {
+
+    }
+
+    public function parseRegistrableDomain(string $host): string
     {
-        $publicSuffixRules = self::getPublicSuffixRules();
+        $publicSuffixRules = $this->getPublicSuffixRules();
 
-        $result = $publicSuffixRules->resolve($host);
+        $result = $publicSuffixRules->getCookieDomain($host);
 
         return $result->registrableDomain()->toString();
     }
 
-    private static function getPublicSuffixRules(): Rules
+    private function getPublicSuffixRules(): Rules
     {
         if (!is_null(self::$publicSuffixRules)) {
             return self::$publicSuffixRules;
         }
 
-        $publicSuffixRulesPath = realpath(__DIR__ . '/../resources/publicSuffixRules');
-        if ($publicSuffixRulesPath && file_exists($publicSuffixRulesPath)) {
-            $serializedRules = file_get_contents($publicSuffixRulesPath);
-            $publicSuffixRules = unserialize($serializedRules);
-            assert($publicSuffixRules instanceof Rules);
-        } else {
-            $publicSuffixRules = Rules::fromPath(realpath(__DIR__ . '/../resources/public_suffix_list.dat'));
-            $serializedRules = serialize($publicSuffixRules);
-            file_put_contents('publicSuffixRules', $serializedRules);
-        }
-
-        self::$publicSuffixRules = $publicSuffixRules;
-
-        return $publicSuffixRules;
+        return $this->publicSuffixListStorage->get(self::PUBLIC_SUFFIX_LIST_URI);
     }
 }
