@@ -18,9 +18,9 @@ class RuleAggregateSaverTest extends TestCase
         $ruleAggregateSaver = new RuleAggregateSaver();
         $ruleDomain = 'domain.com';
         $ruleDomainTwo = 'anotherDomain.fr';
-        $savedFilePath = './testSavedRuleAggregate.php';
+        $savedFilePath = './dummyRuleAggregate.php';
 
-        $adblockParser = new RuleAggregate([
+        $ruleAggregate = new RuleAggregate([
             $ruleDomain => new RuleCollection([new Rule(
                 regex: 'test',
                 isException: false,
@@ -40,23 +40,23 @@ class RuleAggregateSaverTest extends TestCase
             ]),
         ]);
 
-        $ruleAggregateSaver->saveAdblockParser($adblockParser, $savedFilePath);
+        $ruleAggregateSaver->save($ruleAggregate, $savedFilePath);
 
-        $loadedAdblockParser = $ruleAggregateSaver->loadAdblockParser($savedFilePath);
+        $loadedRuleAggregate = $ruleAggregateSaver->load($savedFilePath);
 
-        Assert::assertSame($adblockParser->toArray(), $loadedAdblockParser->toArray());
+        Assert::assertSame($ruleAggregate->toArray(), $loadedRuleAggregate->toArray());
 
-        Assert::assertSame([$ruleDomain, $ruleDomainTwo], array_keys($loadedAdblockParser->getRuleCollections()));
+        Assert::assertSame([$ruleDomain, $ruleDomainTwo], array_keys($loadedRuleAggregate->getRuleCollections()));
         Assert::assertSame(
             'testTwo',
-            $loadedAdblockParser->getRuleCollections()[$ruleDomainTwo]->getAllRules()[0]->getRegex(),
+            $loadedRuleAggregate->getRuleCollections()[$ruleDomainTwo]->getAllRules()[0]->getRegex(),
         );
-        Assert::assertFalse($loadedAdblockParser->getRuleCollections()[$ruleDomainTwo]->getAllRules()[0]->isException());
+        Assert::assertFalse($loadedRuleAggregate->getRuleCollections()[$ruleDomainTwo]->getAllRules()[0]->isException());
         Assert::assertSame(
             'testThree',
-            $loadedAdblockParser->getRuleCollections()[$ruleDomainTwo]->getAllRules()[1]->getRegex(),
+            $loadedRuleAggregate->getRuleCollections()[$ruleDomainTwo]->getAllRules()[1]->getRegex(),
         );
-        Assert::assertTrue($loadedAdblockParser->getRuleCollections()[$ruleDomainTwo]->getAllRules()[1]->isException());
+        Assert::assertTrue($loadedRuleAggregate->getRuleCollections()[$ruleDomainTwo]->getAllRules()[1]->isException());
 
         unlink($savedFilePath);
     }

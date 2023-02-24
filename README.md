@@ -1,9 +1,13 @@
 PHP parser for Adblock Plus filters
 ===================================
 
-[![Build Status](https://travis-ci.org/limonte/php-adblock-parser.svg?branch=master)](https://travis-ci.org/limonte/php-adblock-parser)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
+This is a fork of the abandoned Limonte\AdblockParser. 
+   
+It has been edited to optimize performance, namely:
+- The object containing the rules can be saved to avoid the long time to create it.
+- Only run necessary rules; the generic rules and the rules applying specifically to the domain of the url.
+
+It also separates responsibilities of classes better by having factories, services and DTOs.
 
 Usage
 -----
@@ -17,7 +21,7 @@ To learn about Adblock Plus filter syntax check these links:
    downloaded from [EasyList](https://easylist.to/), etc.:
 
    ```php
-   $rules = [
+   $adblockEntries = [
        "||ads.example.com^",
        "@@||ads.example.com/notbanner^$~script",
    ];
@@ -28,15 +32,14 @@ To learn about Adblock Plus filter syntax check these links:
    ```php
    use Limonte\AdblockParser;
 
-   $adblockParser = new AdblockParser($rules);
-   $adblockParser->addRules($anotherRules);
+   $ruleAggregate = (new RuleAggregateFactory(new RuleFactory()))->createFromAdblockEntries($adblockEntries);
    ```
 
 3. Use this instance to check if an URL should be blocked or not:
 
    ```php
-   $adblockParser->shouldBlock("http://ads.example.com"); // true
-   $adblockParser->shouldBlock("http://non-ads.example.com"); // false
+   (new RuleApplier())->shouldBlock("http://ads.example.com", $ruleAggregate); // true
+   (new RuleApplier())->shouldBlock("http://non-ads.example.com", $ruleAggregate); // false
    ```
 
 Related projects

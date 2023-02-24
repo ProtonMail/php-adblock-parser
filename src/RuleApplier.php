@@ -7,7 +7,7 @@ namespace ProtonLabs\AdblockParser;
 class RuleApplier
 {
     public function __construct(
-        private readonly DomainParserInterface $domainParser,
+        private readonly DomainParserInterface $domainParser = new DummyDomainParser(),
     ) {
     }
 

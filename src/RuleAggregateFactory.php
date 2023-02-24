@@ -18,7 +18,7 @@ class RuleAggregateFactory
      * @param array<string> $paths
      * @throws NotAPathException
      */
-    public function createAdblockParserFromFiles(array $paths): RuleAggregate
+    public function createFromFiles(array $paths): RuleAggregate
     {
         $ruleAggregate = new RuleAggregate();
         foreach ($paths as $path) {

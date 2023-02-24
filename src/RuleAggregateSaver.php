@@ -6,9 +6,9 @@ namespace ProtonLabs\AdblockParser;
 
 class RuleAggregateSaver
 {
-    public function saveAdblockParser(RuleAggregate $adblockParser, string $savedFilePath): bool
+    public function save(RuleAggregate $ruleAggregate, string $savedFilePath): bool
     {
-        $export = var_export($adblockParser->toArray(), return: true);
+        $export = var_export($ruleAggregate->toArray(), return: true);
         $selfFqcn = self::class;
         $out = <<<OUT
             <?php
@@ -23,7 +23,7 @@ class RuleAggregateSaver
         return (bool) $success;
     }
 
-    public function loadAdblockParser(string $savedFilePath): ?RuleAggregate
+    public function load(string $savedFilePath): ?RuleAggregate
     {
         if (!file_exists($savedFilePath)) {
             return null;
@@ -31,10 +31,9 @@ class RuleAggregateSaver
 
         $export = include $savedFilePath;
 
-        $adblockParser = RuleAggregate::fromArray($export);
+        $ruleAggregate = RuleAggregate::fromArray($export);
+        assert($ruleAggregate instanceof RuleAggregate);
 
-        assert($adblockParser instanceof RuleAggregate);
-
-        return $adblockParser;
+        return $ruleAggregate;
     }
 }

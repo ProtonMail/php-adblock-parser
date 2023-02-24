@@ -21,7 +21,7 @@ class RuleAggregateFactoryTest extends TestCase
     {
         $ruleAggregateFactory = $this->createRuleAggregateFactory();
 
-        $ruleAggregate = $ruleAggregateFactory->createAdblockParserFromFiles([__DIR__ . '/test-rules.txt']);
+        $ruleAggregate = $ruleAggregateFactory->createFromFiles([__DIR__ . '/test-rules.txt']);
 
         $this->assertCount(1, $ruleAggregate->getRuleCollections());
         $this->assertCount(
