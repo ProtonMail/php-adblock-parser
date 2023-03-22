@@ -1,8 +1,12 @@
 PHP parser for Adblock Plus filters
 ===================================
 
-This is a fork of the abandoned Limonte\AdblockParser. 
-   
+[![Build Status](https://travis-ci.org/limonte/php-adblock-parser.svg?branch=master)](https://travis-ci.org/limonte/php-adblock-parser)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
+
+This is a fork of the abandoned Limonte\AdblockParser.
+
 It has been edited to optimize performance, namely:
 - The object containing the rules can be saved to avoid the long time to create it.
 - Only run necessary rules; the generic rules and the rules applying specifically to the domain of the url.
