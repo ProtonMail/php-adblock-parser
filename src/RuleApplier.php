@@ -19,7 +19,7 @@ class RuleApplier
             throw new NotAnUrlException('Invalid URL');
         }
 
-        $host = parse_url($url)['host'];
+        $host = parse_url($url)['host'] ?? null;
         if (!is_string($host)) {
             throw new NotAnUrlException('Invalid URL');
         }
