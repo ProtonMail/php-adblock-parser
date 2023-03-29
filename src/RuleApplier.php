@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ProtonLabs\AdblockParser;
 
+use Pdp\SyntaxError;
+
 class RuleApplier
 {
     public function __construct(
@@ -23,7 +25,11 @@ class RuleApplier
         if (!is_string($host)) {
             throw new NotAnUrlException('Invalid URL');
         }
-        $registrableDomain = $this->domainParser->parseRegistrableDomain($host);
+        try {
+            $registrableDomain = $this->domainParser->parseRegistrableDomain($host);
+        } catch (SyntaxError) {
+            $registrableDomain = null;
+        }
 
         foreach ($ruleAggregate->getRulesToApplyForDomain($registrableDomain) as $rule) {
             if ($this->matchUrl($url, $rule)) {

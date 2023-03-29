@@ -66,7 +66,7 @@ class RuleAggregate
     /**
      * @return list<Rule>
      */
-    public function getRulesToApplyForDomain(string $registrableDomain): array
+    public function getRulesToApplyForDomain(?string $registrableDomain): array
     {
         return array_merge( // exceptions must go first
             ($this->ruleCollections[Rule::DOMAIN_AGNOSTIC_IDENTIFIER] ?? null)?->getExceptions() ?? [],
