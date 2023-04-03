@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ProtonLabs\AdblockParser;
 
+use Pdp\SyntaxError;
+
 class RuleFactory
 {
     public function __construct(
@@ -32,7 +34,11 @@ class RuleFactory
             subject: $adblockEntry,
             matches: $matches,
         )) {
-            $registrableDomain = $this->domainParser->parseRegistrableDomain(host: $matches[1]);
+            try{
+                $registrableDomain = $this->domainParser->parseRegistrableDomain(host: $matches[1]);
+            } catch (SyntaxError) {
+                // do nothing
+            }
         }
 
         $regex = $this->transformAdblockRuleEntryToRegex($adblockEntry);
