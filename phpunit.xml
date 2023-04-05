@@ -4,6 +4,11 @@
     <include>
       <directory suffix=".php">./src</directory>
     </include>
+    <report>
+      <html outputDirectory="./report/html-coverage" lowUpperBound="50" highLowerBound="90"/>
+      <php outputFile="./report/coverage.php"/>
+      <text outputFile="./report/coverage.txt"/>
+    </report>
   </coverage>
   <testsuites>
     <testsuite name="Application Test Suite">

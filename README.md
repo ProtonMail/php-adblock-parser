@@ -1,9 +1,7 @@
 PHP parser for Adblock Plus filters
 ===================================
 
-[![Build Status](https://travis-ci.org/limonte/php-adblock-parser.svg?branch=master)](https://travis-ci.org/limonte/php-adblock-parser)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/limonte/php-adblock-parser/?branch=master)
+[![Master Build Status](https://github.com/ProtonMail/php-adblock-parser/actions/workflows/master.yml/badge.svg)](https://github.com/ProtonMail/php-adblock-parser/actions/workflows/master.yml)
 
 This is a fork of the abandoned Limonte\AdblockParser.
 

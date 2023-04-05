@@ -1,4 +1,4 @@
-name: PHP Composer
+name: master
 
 on:
   push:
@@ -44,3 +44,9 @@ jobs:
 
     - name: Check code style
       run: composer run-script lint-codestyle
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: code-coverage-report
+        path: report/
