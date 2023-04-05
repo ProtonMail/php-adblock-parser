@@ -6,9 +6,9 @@ namespace ProtonLabs\AdblockParser\Tests;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\RuleAggregate;
 use ProtonLabs\AdblockParser\RuleAggregateSaver;
-use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\RuleCollection;
 
 class RuleAggregateSaverTest extends TestCase
@@ -36,7 +36,7 @@ class RuleAggregateSaverTest extends TestCase
                     regex: 'testThree',
                     isException: true,
                     registrableDomain: $ruleDomain,
-                )
+                ),
             ]),
         ]);
 

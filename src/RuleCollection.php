@@ -8,7 +8,7 @@ class RuleCollection
 {
     /**
      * @param array<Rule> $exceptions // items that match this should be whitelisted from all other blocking rules
-     * @param array<Rule> $blockers  // items that match this should be blocked
+     * @param array<Rule> $blockers   // items that match this should be blocked
      */
     public function __construct(
         private array $exceptions = [],

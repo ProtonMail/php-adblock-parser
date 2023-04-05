@@ -7,13 +7,10 @@ namespace ProtonLabs\AdblockParser\Tests;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use ProtonLabs\AdblockParser\DomainParserInterface;
-use ProtonLabs\AdblockParser\RuleAggregate;
+use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\RuleAggregateFactory;
 use ProtonLabs\AdblockParser\RuleApplier;
-use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\RuleFactory;
-use Psr\Cache\CacheItemInterface;
-use Psr\Cache\CacheItemPoolInterface;
 
 class RuleAggregateFactoryTest extends TestCase
 {

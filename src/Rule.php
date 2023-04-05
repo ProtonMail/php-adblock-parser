@@ -20,7 +20,7 @@ class Rule
         return [
             'regex' => $this->regex,
             'isException' => $this->isException,
-            'registrableDomain'=> $this->registrableDomain,
+            'registrableDomain' => $this->registrableDomain,
         ];
     }
 

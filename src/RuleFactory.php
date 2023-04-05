@@ -34,7 +34,7 @@ class RuleFactory
             subject: $adblockEntry,
             matches: $matches,
         )) {
-            try{
+            try {
                 $registrableDomain = $this->domainParser->parseRegistrableDomain(host: $matches[1]);
             } catch (SyntaxError) {
                 // do nothing
@@ -90,7 +90,7 @@ class RuleFactory
                 // http://tools.ietf.org/html/rfc3986#appendix-B
                 $regex = '^([^:\/?#]+:)?(\/\/([^\/?#]*\.)?)?' . mb_substr($regex, 2);
             }
-            // | in the beginning means start of the address
+        // | in the beginning means start of the address
         } elseif (Str::startsWith($regex, '|')) {
             $regex = '^' . mb_substr($regex, 1);
         }

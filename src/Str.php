@@ -9,7 +9,8 @@ class Str
     public static function startsWith($haystack, $needle)
     {
         $length = mb_strlen($needle);
-        return (mb_substr($haystack, 0, $length) === $needle);
+
+        return mb_substr($haystack, 0, $length) === $needle;
     }
 
     public static function endsWith($haystack, $needle)
@@ -19,7 +20,7 @@ class Str
             return true;
         }
 
-        return (mb_substr($haystack, -$length) === $needle);
+        return mb_substr($haystack, -$length) === $needle;
     }
 
     public static function contains($haystack, $needle)

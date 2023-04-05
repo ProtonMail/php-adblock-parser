@@ -17,8 +17,8 @@ class RuleApplierTest extends TestCase
     public function testMatchUrl()
     {
         $rule = $this->createRuleFactory()->createFromAdblockEntry('swf|');
-        $this->assertTrue($this->createRuleApplier()->matchUrl("http://example.com/annoyingflash.swf", $rule));
-        $this->assertFalse($this->createRuleApplier()->matchUrl("http://example.com/swf/index.html", $rule));
+        $this->assertTrue($this->createRuleApplier()->matchUrl('http://example.com/annoyingflash.swf', $rule));
+        $this->assertFalse($this->createRuleApplier()->matchUrl('http://example.com/swf/index.html', $rule));
     }
 
     public function testInvalidUrl(): void
@@ -234,5 +234,4 @@ class RuleApplierTest extends TestCase
     {
         return new RuleAggregateFactory($this->createRuleFactory());
     }
-
 }

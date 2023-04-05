@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ProtonLabs\AdblockParser;
 
-use Pdp\UnableToLoadPublicSuffixList;
 use Pdp\SyntaxError;
+use Pdp\UnableToLoadPublicSuffixList;
 
 interface DomainParserInterface
 {

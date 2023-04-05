@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace ProtonLabs\AdblockParser;
 
-use InvalidArgumentException;
-use Psr\Cache\CacheItemPoolInterface;
-
 class RuleAggregateFactory
 {
     public function __construct(
@@ -16,6 +13,7 @@ class RuleAggregateFactory
 
     /**
      * @param array<string> $paths
+     *
      * @throws NotAPathException
      */
     public function createFromFiles(array $paths): RuleAggregate
@@ -24,9 +22,7 @@ class RuleAggregateFactory
         foreach ($paths as $path) {
             $content = file_get_contents($path);
             if ($content === false) {
-                throw new NotAPathException(
-                    "The following string is not a valid path to a file $path"
-                );
+                throw new NotAPathException("The following string is not a valid path to a file $path");
             }
             $lines = preg_split("/(\r\n|\n|\r)/", $content);
             $collections = $this->createRuleCollections($lines);
@@ -47,6 +43,7 @@ class RuleAggregateFactory
 
     /**
      * @param array<string> $adblockEntries
+     *
      * @return array<string, RuleCollection>
      */
     public function createRuleCollections(array $adblockEntries): array
