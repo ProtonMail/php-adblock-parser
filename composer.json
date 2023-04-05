@@ -27,6 +27,7 @@
         "jeremykendall/php-domain-parser": "^6.2"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3",
         "phpunit/phpunit": "^10"
     },
     "config": {
@@ -52,6 +53,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": "phpunit"
+        "test": "phpunit",
+        "lint-codestyle": "php-cs-fixer fix --dry-run",
+        "fix-codestyle": "php-cs-fixer fix"
     }
 }
