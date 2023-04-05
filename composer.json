@@ -28,7 +28,7 @@
         "jeremykendall/php-domain-parser": "^6.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^10"
     },
     "config": {
         "allow-plugins": {
