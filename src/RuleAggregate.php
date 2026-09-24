@@ -53,14 +53,24 @@ class RuleAggregate
     }
 
     /**
+     * Rules of an already known domain are added to its existing collection. Replacing the collection
+     * instead would drop every rule a previous call contributed for that domain.
+     *
      * @param array<string,RuleCollection> $collections
      */
     public function addCollections(array $collections): void
     {
-        $this->ruleCollections = array_merge(
-            $this->ruleCollections,
-            $collections,
-        );
+        foreach ($collections as $domainIdentifier => $collection) {
+            if (!isset($this->ruleCollections[$domainIdentifier])) {
+                $this->ruleCollections[$domainIdentifier] = $collection;
+
+                continue;
+            }
+
+            foreach ($collection->getAllRules() as $rule) {
+                $this->ruleCollections[$domainIdentifier]->addRule($rule);
+            }
+        }
     }
 
     /**
