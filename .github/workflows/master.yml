@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: [ '8.1', '8.2' ]
+        php-version: [ '8.1', '8.2', '8.3', '8.4', '8.5' ]
 
     steps:
     - name: Setup PHP
@@ -48,7 +48,10 @@ jobs:
     - name: Check code style
       run: composer run-script lint-codestyle
 
+    # Every leg produces the same report and they all upload under the same artifact
+    # name, so publish from a single version.
     - name: Archive code coverage results
+      if: matrix.php-version == '8.4'
       uses: actions/upload-pages-artifact@v1
       with:
         path: report/

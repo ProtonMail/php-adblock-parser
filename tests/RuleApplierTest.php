@@ -40,9 +40,9 @@ class RuleApplierTest extends TestCase
         );
         $this->shouldNotBlock(
             [
-            'http://example.com/banner/img',
-            'http://example.com/banner/foo/imgraph',
-            'http://example.com/banner/foo/img.gif',
+                'http://example.com/banner/img',
+                'http://example.com/banner/foo/imgraph',
+                'http://example.com/banner/foo/img.gif',
             ],
             $ruleAggregate,
         );
@@ -197,7 +197,7 @@ class RuleApplierTest extends TestCase
     }
 
     /**
-     * @param array<string> $url
+     * @param array<string> $urls
      */
     private function shouldBlock(array $urls, RuleAggregate $ruleAggregate): void
     {
