@@ -7,6 +7,7 @@ namespace ProtonLabs\AdblockParser\Tests;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use ProtonLabs\AdblockParser\DomainParserInterface;
+use ProtonLabs\AdblockParser\DummyDomainParser;
 use ProtonLabs\AdblockParser\Rule;
 use ProtonLabs\AdblockParser\RuleAggregateFactory;
 use ProtonLabs\AdblockParser\RuleApplier;
@@ -36,6 +37,21 @@ class RuleAggregateFactoryTest extends TestCase
             ->shouldBlock('http://example.com//avmws_asd.js', $ruleAggregate));
         Assert::assertFalse($this->createRuleApplier()
             ->shouldBlock('http://example.com//avmws_exception.js', $ruleAggregate));
+    }
+
+    public function testCreateFromFilesKeepsRulesOfEveryFileForASharedDomain(): void
+    {
+        $factory = new RuleAggregateFactory(new RuleFactory(new DummyDomainParser()));
+
+        $ruleAggregate = $factory->createFromFiles([
+            __DIR__ . '/test-rules-shared-blocker.txt',
+            __DIR__ . '/test-rules-shared-exception.txt',
+        ]);
+
+        $applier = new RuleApplier(new DummyDomainParser());
+
+        Assert::assertTrue($applier->shouldBlock('http://shared-example.com/blocked.gif', $ruleAggregate));
+        Assert::assertFalse($applier->shouldBlock('http://shared-example.com/allowed.gif', $ruleAggregate));
     }
 
     public function createRuleApplier(): RuleApplier

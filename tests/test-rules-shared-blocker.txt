@@ -1,0 +1,2 @@
+! Blocks a path on a domain that the other file also has rules for
+||shared-example.com/blocked.gif
